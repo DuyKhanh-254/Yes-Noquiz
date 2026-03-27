@@ -1,39 +1,120 @@
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Body: pink gradient like v-day site ── */
 body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #ffd6e0 0%, #ffb3c6 50%, #ff85a1 100%);
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+}
+
+/* ── Main card container ── */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 40px 32px;
   text-align: center;
-  margin-top: 30px;
-  font-family: "Courier";
-  background-color: #fff5e4;
-  color: #ff9494;
+  user-select: none;
 }
 
-img {
-  height: 400px;
-  width: auto;
-  padding: 10px;
+/* ── Question heading ── */
+#question {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #c0175d;
+  text-shadow: 0 2px 8px rgba(255,133,161,0.4);
+  transition: all 0.4s ease;
+  max-width: 480px;
+  line-height: 1.2;
 }
 
-#valentineQuestion {
-  font-size: 50px;
-  margin-bottom: 10px;
+/* ── Cat/GIF image ── */
+.cat-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 32px rgba(192, 23, 93, 0.25);
+  animation: float 3s ease-in-out infinite;
 }
-.answerButton {
-  padding: 10px 20px;
-  font-size: 18px;
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── Buttons row ── */
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── YES button ── */
+.btn-yes {
+  padding: 20px 60px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: 'Nunito', sans-serif;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
-  margin: 10px;
-  font-family: "courier";
-  margin-bottom: 20px;
-  background-color: #ffe3e1;
-  color: #e67373;
-  border-radius: 12px;
-  border: 2px solid #ffe3e1;
-  box-shadow: 1px 1px 2px #ff9494;
-  transition: 0.3s;
+  box-shadow: 0 8px 24px rgba(76, 175, 80, 0.45);
+  transition: transform 0.15s, box-shadow 0.15s, font-size 0.3s;
 }
 
-.answerButton:hover {
-  background-color: #ff9494;
-  color: #ffe3e1;
-  border: 2px solid #ff9494;
-  box-shadow: 1px 1px 2px #ffe3e1;
+.btn-yes:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 32px rgba(76, 175, 80, 0.55);
+}
+
+.btn-yes:active {
+  transform: scale(0.97);
+}
+
+/* ── NO button ── */
+.btn-no {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(229, 57, 53, 0.35);
+  transition: transform 0.15s, left 0.1s, top 0.1s;
+  white-space: nowrap;
+  z-index: 999;
+}
+
+.btn-no:active {
+  transform: scale(0.95);
+}
+
+/* ── No counter text ── */
+.no-counter {
+  font-size: 1rem;
+  color: #c0175d;
+  font-weight: 700;
+  min-height: 1.4em;
+  opacity: 0.8;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  #question { font-size: 1.6rem; }
+  .btn-yes  { font-size: 1.8rem; padding: 16px 40px; }
+  .cat-img  { width: 130px; height: 130px; }
 }

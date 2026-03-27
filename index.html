@@ -1,32 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Be My Valentine</title>
+    <title>Mình cùng nhau đi qua mùa Hola nhóooo ❤️ 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/valentine.css" />
   </head>
   <body>
-    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
-    </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
-    <br />
-    <img src="cat.gif" alt="cat asking question" class="responsive" />
+
+    <div class="container">
+      <h1 id="question">Mình cùng nhau đi qua mùa Hola nhóooo ❤️ 💕</h1>
+
+      <img src="cat.gif" alt="cute cat" class="cat-img" id="catImg" />
+
+      <div class="buttons">
+        <button class="btn-yes" id="yesBtn" onclick="location.href='thankyou.html'">Yes</button>
+        <button class="btn-no"  id="noBtn">No</button>
+      </div>
+
+      <p class="no-counter" id="noCounter"></p>
+    </div>
 
     <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
+      const noBtn    = document.getElementById('noBtn');
+      const yesBtn   = document.getElementById('yesBtn');
+      const question = document.getElementById('question');
+      const counter  = document.getElementById('noCounter');
+
+      const phrases = [
+        'Are you sure? 🥺',
+        'Pleeease? 🐱',
+        'Last chance! 🧡',
+        'Think again! 💔',
+        'PLEASEEEE 😭',
+        'Fine... 💀',
+      ];
+
+      let noCount = 0;
+      let yesFontSize = 2.5; // rem
+
+      noBtn.addEventListener('click', function () {
+        // Move No button to random position
+        const maxX = window.innerWidth  - noBtn.offsetWidth  - 20;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+        const randX = Math.floor(Math.random() * maxX);
+        const randY = Math.floor(Math.random() * maxY);
+
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = randX + 'px';
+        noBtn.style.top  = randY + 'px';
+
+        // Grow Yes button
+        yesFontSize += 0.6;
+        yesBtn.style.fontSize = yesFontSize + 'rem';
+
+        // Change question
+        const idx = Math.min(noCount, phrases.length - 1);
+        question.textContent = phrases[idx];
+        noCount++;
+
+        counter.textContent = noCount > 1 ? `You said no ${noCount} times 😢` : '';
+      });
+
+      // No button runs away on hover (desktop)
+      noBtn.addEventListener('mouseenter', function () {
+        const maxX = window.innerWidth  - noBtn.offsetWidth  - 20;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+        const randX = Math.floor(Math.random() * maxX);
+        const randY = Math.floor(Math.random() * maxY);
+
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = randX + 'px';
+        noBtn.style.top  = randY + 'px';
+      });
     </script>
   </body>
 </html>
